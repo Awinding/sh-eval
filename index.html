@@ -1619,14 +1619,14 @@ function buildReport() {
     section.items.forEach(item => {
       if (item.type === 'binary') {
         const s = state.items[item.id];
-        const mark = s === 'yes' ? '✓' : s === 'na' ? '—' : s === 'no' ? '✗' : '☐';
+        const mark = s === 'yes' ? '✅' : s === 'na' ? '—' : s === 'no' ? '❌' : '☐';
         out += `  ${mark} ${item.num}. ${item.title}\n`;
       } else {
         const subState = state.items[item.id] || {};
         out += `  ${item.num}. ${item.title}\n`;
         item.subItems.forEach(sub => {
           const ok = subState[sub.id];
-          out += `     ${ok ? '✓' : '✗'} ${sub.label} (${sub.points}分)\n`;
+          out += `     ${ok ? '✅' : '❌'} ${sub.label} (${sub.points}分)\n`;
         });
       }
     });
@@ -1640,7 +1640,7 @@ function buildReport() {
     if (activeBonus.length === 0) {
       out += `  (無)\n`;
     } else {
-      activeBonus.forEach(b => out += `  ✓ ${b.label} (+${b.points})\n`);
+      activeBonus.forEach(b => out += `  ✅ ${b.label} (+${b.points})\n`);
     }
     out += `\n`;
 
