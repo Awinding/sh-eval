@@ -1,0 +1,1745 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#1f5d3e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>緒瀚資訊 門市優質服務評分表</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+:root {
+  --bg: #f5f2eb;
+  --surface: #ffffff;
+  --surface-2: #faf8f3;
+  --border: #e5dfd1;
+  --border-strong: #c9c0ad;
+  --text: #1a1a1a;
+  --text-soft: #6b6b6b;
+  --text-mute: #999999;
+  --primary: #1f5d3e;
+  --primary-dark: #143d28;
+  --primary-soft: #e8f1ec;
+  --accent: #c8553d;
+  --accent-soft: #fae8e3;
+  --gold: #b8862b;
+  --gold-soft: #fbf3dd;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow: 0 2px 8px rgba(0,0,0,0.06);
+  --shadow-md: 0 6px 20px rgba(0,0,0,0.10);
+  --radius: 12px;
+  --radius-lg: 18px;
+}
+
+html, body {
+  font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.01em;
+}
+
+body {
+  padding-bottom: 160px;
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at top, rgba(31,93,62,0.06), transparent 60%),
+    var(--bg);
+}
+
+button { font-family: inherit; cursor: pointer; }
+input, select, textarea { font-family: inherit; font-size: 15px; }
+
+/* ============ Header ============ */
+.app-header {
+  background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: #fff;
+  padding: 18px 18px 16px;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  box-shadow: var(--shadow-md);
+}
+
+.app-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.app-title-block { flex: 1; min-width: 0; }
+
+.app-eyebrow {
+  font-size: 10px;
+  letter-spacing: 3px;
+  opacity: 0.7;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.app-title {
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 900;
+  font-size: 19px;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.app-year {
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 800;
+  font-size: 14px;
+  background: rgba(255,255,255,0.15);
+  padding: 4px 10px;
+  border-radius: 999px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+/* ============ Mode Toggle ============ */
+.mode-section { padding: 14px 14px 6px; }
+
+.mode-toggle {
+  display: flex;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.mode-toggle button {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 11px 8px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-soft);
+  transition: all 0.25s ease;
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.5px;
+}
+
+.mode-toggle button.active {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(31,93,62,0.3);
+}
+
+.mode-hint {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-mute);
+  margin-top: 8px;
+  letter-spacing: 0.5px;
+}
+
+/* ============ Sections ============ */
+.section {
+  margin: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.section-header {
+  padding: 16px 18px;
+  background: linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.section-header-left { display: flex; flex-direction: column; gap: 2px; }
+
+.section-eyebrow {
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.section-title {
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--text);
+  letter-spacing: 0.5px;
+}
+
+.section-points {
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  padding: 5px 11px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 800;
+  font-feature-settings: "tnum";
+  white-space: nowrap;
+}
+
+.section-body { padding: 6px 0; }
+
+/* ============ Store Info ============ */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 16px 18px 8px;
+}
+
+.info-field { display: flex; flex-direction: column; gap: 5px; }
+
+.info-field.full { grid-column: 1 / -1; }
+
+.info-field label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--text-soft);
+  text-transform: uppercase;
+}
+
+.info-field input, .info-field select {
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 15px;
+  color: var(--text);
+  transition: border-color 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.info-field input:focus, .info-field select:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: #fff;
+}
+
+.info-field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231f5d3e' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
+  padding-right: 36px;
+}
+
+/* ============ Items ============ */
+.item {
+  padding: 16px 18px;
+  border-top: 1px solid var(--border);
+}
+
+.item:first-child { border-top: none; }
+
+.item-title {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.5;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.item-title .item-num {
+  color: var(--primary);
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 800;
+  font-size: 17px;
+  margin-right: 4px;
+}
+
+.item-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.item-range {
+  font-size: 11px;
+  color: var(--primary);
+  background: var(--primary-soft);
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.item-maxpts {
+  font-size: 11px;
+  color: var(--text-soft);
+  background: #f0ece2;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-feature-settings: "tnum";
+}
+
+.item-desc {
+  font-size: 12.5px;
+  color: var(--text-soft);
+  line-height: 1.6;
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  background: var(--surface-2);
+  border-radius: 10px;
+  border-left: 3px solid var(--border-strong);
+}
+
+.item-desc .highlight {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* Binary buttons */
+.choice-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.choice-btn {
+  flex: 1;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  padding: 12px 8px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-soft);
+  transition: all 0.18s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.choice-btn .icon { font-size: 16px; }
+
+.choice-btn.selected-yes {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+  box-shadow: 0 2px 8px rgba(31,93,62,0.25);
+}
+
+.choice-btn.selected-no {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  box-shadow: 0 2px 8px rgba(200,85,61,0.25);
+}
+
+.choice-btn.selected-na {
+  background: var(--text-soft);
+  color: #fff;
+  border-color: var(--text-soft);
+}
+
+/* Sub-items (multi) */
+.subitems { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+
+.subitem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  border-radius: 12px;
+  transition: all 0.18s;
+  cursor: pointer;
+}
+
+.subitem.checked {
+  background: var(--primary-soft);
+  border-color: var(--primary);
+}
+
+.subitem-check {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 2px solid var(--border-strong);
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+  transition: all 0.18s;
+}
+
+.subitem.checked .subitem-check {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.subitem-check svg { width: 14px; height: 14px; opacity: 0; }
+.subitem.checked .subitem-check svg { opacity: 1; }
+
+.subitem-text { flex: 1; }
+.subitem-label { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.4; }
+.subitem-hint { font-size: 11.5px; color: var(--text-soft); margin-top: 3px; line-height: 1.4; }
+.subitem-pts {
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--primary);
+  font-feature-settings: "tnum";
+  background: var(--surface-2);
+  padding: 3px 8px;
+  border-radius: 6px;
+  margin-top: 1px;
+}
+.subitem.checked .subitem-pts { background: rgba(255,255,255,0.7); color: var(--primary-dark); }
+
+/* Bonus toggle */
+.bonus-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  border-radius: 12px;
+  transition: all 0.18s;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.bonus-item.active {
+  background: var(--gold-soft);
+  border-color: var(--gold);
+}
+
+.bonus-toggle {
+  flex-shrink: 0;
+  width: 40px;
+  height: 24px;
+  border-radius: 999px;
+  background: var(--border-strong);
+  position: relative;
+  transition: background 0.2s;
+}
+
+.bonus-item.active .bonus-toggle { background: var(--gold); }
+
+.bonus-toggle::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  top: 3px;
+  left: 3px;
+  transition: left 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.bonus-item.active .bonus-toggle::after { left: 19px; }
+
+.bonus-label { flex: 1; font-size: 13.5px; line-height: 1.5; }
+.bonus-pts { font-size: 12px; font-weight: 800; color: var(--gold); }
+
+/* Text inputs (魅力/反轉/其他) */
+.text-list { padding: 0 18px 12px; }
+
+.text-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.text-row-num {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-row input {
+  flex: 1;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  padding: 9px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.text-row input:focus { outline: none; border-color: var(--primary); background: #fff; }
+
+.section-note {
+  font-size: 11.5px;
+  color: var(--text-soft);
+  padding: 0 18px 14px;
+  line-height: 1.5;
+}
+
+/* ============ Score Bar (sticky bottom) ============ */
+.score-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, var(--surface) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+  padding: 12px 14px calc(12px + env(safe-area-inset-bottom));
+  z-index: 30;
+}
+
+.score-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.score-main { display: flex; align-items: baseline; gap: 8px; }
+
+.score-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--text-soft);
+  font-weight: 700;
+}
+
+.score-value {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--primary);
+  font-feature-settings: "tnum";
+  line-height: 1;
+}
+
+.score-max {
+  font-size: 14px;
+  color: var(--text-mute);
+  font-weight: 700;
+}
+
+.grade-badge {
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 900;
+  font-size: 18px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  letter-spacing: 1px;
+  min-width: 70px;
+  text-align: center;
+}
+
+.grade-Aplus { background: var(--gold); color: #fff; }
+.grade-A { background: var(--primary); color: #fff; }
+.grade-B { background: #4a7a8a; color: #fff; }
+.grade-C { background: var(--accent); color: #fff; }
+.grade-Z { background: #1a1a1a; color: #fff; }
+
+.score-actions { display: flex; gap: 8px; }
+
+.action-btn {
+  flex: 1;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: all 0.18s;
+}
+
+.action-btn:active { transform: scale(0.97); }
+.action-btn.primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+.action-btn.danger { color: var(--accent); border-color: var(--accent-soft); }
+
+/* ============ Modal ============ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 40;
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.modal-overlay.show { display: flex; }
+
+.modal {
+  background: var(--surface);
+  border-radius: 20px 20px 0 0;
+  width: 100%;
+  max-height: 90vh;
+  padding: 20px 18px calc(20px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.25s ease;
+}
+
+@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+.modal-title {
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 900;
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.modal-textarea {
+  flex: 1;
+  width: 100%;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-family: 'Noto Sans TC', monospace;
+  line-height: 1.6;
+  resize: none;
+  min-height: 280px;
+  margin-bottom: 12px;
+}
+
+.modal-actions { display: flex; gap: 8px; }
+
+.modal-actions .action-btn { padding: 12px; font-size: 14px; }
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 200px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(26,26,26,0.95);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+  z-index: 50;
+  letter-spacing: 0.5px;
+}
+
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* Confirm dialog */
+.confirm-dialog {
+  background: var(--surface);
+  border-radius: 16px;
+  max-width: 320px;
+  width: 100%;
+  padding: 20px;
+  margin: 16px;
+}
+
+.modal-overlay.confirm { align-items: center; }
+
+.confirm-title {
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 800;
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+
+.confirm-text { font-size: 13.5px; color: var(--text-soft); margin-bottom: 16px; line-height: 1.5; }
+
+/* ============ Footer note ============ */
+.footer-note {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-mute);
+  padding: 12px 14px;
+  letter-spacing: 1px;
+}
+
+.footer-note span { color: var(--primary); font-weight: 700; }
+
+/* Bonus indicator */
+.bonus-indicator {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--gold-soft);
+  color: var(--gold);
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  margin-left: 6px;
+  font-feature-settings: "tnum";
+}
+
+.bonus-indicator.minus { background: var(--accent-soft); color: var(--accent); }
+
+.section-summary {
+  padding: 10px 18px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  background: var(--surface-2);
+  border-top: 1px solid var(--border);
+}
+
+.section-summary-label { color: var(--text-soft); font-weight: 700; letter-spacing: 0.5px; }
+.section-summary-value { font-weight: 800; color: var(--primary); font-feature-settings: "tnum"; font-size: 14px; }
+
+@media (max-width: 360px) {
+  .info-grid { grid-template-columns: 1fr; }
+  .app-title { font-size: 17px; }
+  .score-value { font-size: 28px; }
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <div class="app-header-row">
+    <div class="app-title-block">
+      <div class="app-eyebrow">緒瀚資訊</div>
+      <h1 class="app-title">門市優質服務評分表</h1>
+    </div>
+    <div class="app-year">2026</div>
+  </div>
+</header>
+
+<div class="mode-section">
+  <div class="mode-toggle">
+    <button id="modeFocusBtn" class="active" data-mode="focus">重點聚焦</button>
+    <button id="modeFullBtn" data-mode="full">完整評分</button>
+  </div>
+  <div class="mode-hint" id="modeHint">100 分制 · 只評重點聚焦 4 項（獨立評分）</div>
+</div>
+
+<!-- Store info section -->
+<section class="section">
+  <div class="section-header" style="cursor:default;">
+    <div class="section-header-left">
+      <div class="section-eyebrow">STORE INFO</div>
+      <div class="section-title">門市資訊</div>
+    </div>
+  </div>
+  <div class="info-grid">
+    <div class="info-field">
+      <label>門市店號</label>
+      <input type="text" id="info-storeId" autocomplete="off">
+    </div>
+    <div class="info-field">
+      <label>門市</label>
+      <input type="text" id="info-storeName" autocomplete="off">
+    </div>
+    <div class="info-field">
+      <label>查核日期</label>
+      <input type="date" id="info-date">
+    </div>
+    <div class="info-field">
+      <label>查核時間</label>
+      <input type="time" id="info-time">
+    </div>
+    <div class="info-field full">
+      <label>查核班別</label>
+      <select id="info-shift">
+        <option value="">請選擇</option>
+        <option value="早班">早班</option>
+        <option value="中班">中班</option>
+        <option value="晚班">晚班</option>
+        <option value="大夜">大夜</option>
+      </select>
+    </div>
+  </div>
+</section>
+
+<!-- Dynamic content rendered here -->
+<div id="formContainer"></div>
+
+<div class="footer-note">
+  <span>欣瀚資訊管理</span> · 評分表系統 · 自動儲存
+</div>
+
+<!-- Sticky score bar -->
+<div class="score-bar">
+  <div class="score-display">
+    <div class="score-main">
+      <div>
+        <div class="score-label">總分 TOTAL</div>
+        <div>
+          <span class="score-value" id="totalScore">0</span>
+          <span class="score-max" id="totalMax">/ 100</span>
+        </div>
+      </div>
+    </div>
+    <div class="grade-badge grade-Z" id="gradeBadge">—</div>
+  </div>
+  <div class="score-actions">
+    <button class="action-btn danger" onclick="confirmReset()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>
+      重置
+    </button>
+    <button class="action-btn" onclick="showExport()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3 3-3m-3 3V2m9 11v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5"/></svg>
+      檢視
+    </button>
+    <button class="action-btn primary" onclick="copyReport()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      複製
+    </button>
+  </div>
+</div>
+
+<!-- Export modal -->
+<div class="modal-overlay" id="exportModal" onclick="if(event.target===this)closeExport()">
+  <div class="modal">
+    <div class="modal-title">評分報告</div>
+    <textarea class="modal-textarea" id="exportText" readonly></textarea>
+    <div class="modal-actions">
+      <button class="action-btn" onclick="closeExport()">關閉</button>
+      <button class="action-btn primary" onclick="copyReport(); closeExport();">複製到剪貼簿</button>
+    </div>
+  </div>
+</div>
+
+<!-- Confirm modal -->
+<div class="modal-overlay confirm" id="confirmModal" onclick="if(event.target===this)closeConfirm()">
+  <div class="confirm-dialog">
+    <div class="confirm-title">確定要重置？</div>
+    <div class="confirm-text">將清空目前所有評分內容，此操作無法復原。</div>
+    <div class="modal-actions">
+      <button class="action-btn" onclick="closeConfirm()">取消</button>
+      <button class="action-btn primary" style="background:var(--accent);border-color:var(--accent);" onclick="doReset()">確定重置</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ============================================================
+// DATA: Full evaluation form (2026)
+// ============================================================
+const FULL_FORM = {
+  sections: [
+    {
+      id: 'focus',
+      eyebrow: 'KEY FOCUS · 31 分',
+      title: '重點聚焦',
+      items: [
+        {
+          id: '01', num: '01', range: '進門表現', maxPoints: 5,
+          title: '顧客進店時，服務人員有招呼話術。',
+          desc: '訪員進門後3分鐘內無招呼話術扣<span class="highlight">5分</span>；3分鐘內全員因結帳或調製商品(如咖啡沖泡、現萃茶)不扣分。三分鐘內無其他顧客進店，不扣分。',
+          type: 'binary', allowNA: true, naLabel: '不適用'
+        },
+        {
+          id: '02', num: '02', range: '櫃檯結帳', maxPoints: 15,
+          title: '顧客臨櫃結帳',
+          desc: '<span class="highlight">每小項未執行扣3分</span>。第一項招呼問候，自訪員從排隊停等線走到櫃台，有出聲招呼均認列。',
+          type: 'multi',
+          subItems: [
+            { id: 'a', label: '① 有向顧客招呼問候 (例：您好/哈囉)', points: 3 },
+            { id: 'b', label: '② 有詢問會員', points: 3 },
+            { id: 'c', label: '③ 有確認發票存載具', points: 3, hint: '導引顧客手輸會員電話、由顧客報電話、刷會員條碼均可' },
+            { id: 'd', label: '④ 有金額告知 (總共多少元)', points: 3 },
+            { id: 'e', label: '⑤ 有支付指引', points: 3, hint: '現金：收您OO元、找您OO元；卡片：好了，卡片可以拿起來了；電子錢包：好了，謝謝' }
+          ]
+        },
+        {
+          id: '03', num: '03', range: '櫃檯面銷', maxPoints: 6,
+          title: '針對顧客購買商品或聚焦活動進行面銷。',
+          desc: '無面銷扣<span class="highlight">6分</span>；訪員在第一位且排隊≧3人沒有面銷不扣分(≧3人以訪員初臨櫃判斷)。',
+          type: 'binary', allowNA: true, naLabel: '不適用(排隊≧3人)'
+        },
+        {
+          id: '04', num: '04', range: '櫃檯結帳', maxPoints: 5,
+          title: '完成結帳服務後致謝→謝謝、歡迎再來等話術。',
+          desc: '臨櫃未致謝扣<span class="highlight">5分</span>；付款後或裝袋後有致謝均給分。',
+          type: 'binary'
+        }
+      ],
+      footer: '01~04 四項都有做到，以40分計算（+9分）！如其中一項未滿分，則依評分表內容逐項計分。',
+      perfectBonus: 9
+    },
+    {
+      id: 'basic',
+      eyebrow: 'BASIC · 30 分',
+      title: '基本項目',
+      items: [
+        {
+          id: '05', num: '05', range: '服儀表現', maxPoints: 6,
+          title: '服儀規範',
+          desc: '每項扣2分（名牌可不顯示全名、可不張貼照片）。',
+          type: 'multi',
+          subItems: [
+            { id: 'a', label: '① 著乾淨制服', points: 2 },
+            { id: 'b', label: '② 佩掛名牌且名稱可辨識 (非條碼)', points: 2 },
+            { id: 'c', label: '③ 無指甲油、指甲彩繪、手指佩戴飾品', points: 2 }
+          ]
+        },
+        {
+          id: '06', num: '06', range: '外部環境', maxPoints: 4,
+          title: '門口與外圍',
+          desc: '每項扣2分。',
+          type: 'multi',
+          subItems: [
+            { id: 'a', label: '① 騎樓與外圍清潔、空箱堆放無垃圾', points: 2 },
+            { id: 'b', label: '② 玻璃無明顯髒污', points: 2 }
+          ]
+        },
+        {
+          id: '07', num: '07', range: '內部整齊', maxPoints: 8,
+          title: '賣場陳列與整潔',
+          desc: '每項扣2分。',
+          type: 'multi',
+          subItems: [
+            { id: 'a', label: '① 賣場貨架空洞無商品未達3排(含)或無凌亂', points: 2 },
+            { id: 'b', label: '② 落地陳列均有 POP 價格告知', points: 2 },
+            { id: 'c', label: '③ 洗手槽無放置刷具/海綿/洗碗精', points: 2 },
+            { id: 'd', label: '④ 無堆放商品與雜物影響走道動線', points: 2 }
+          ]
+        },
+        {
+          id: '08', num: '08', range: '內部清潔', maxPoints: 6,
+          title: '地板與座位區',
+          desc: '每項扣2分（無座位區或時段關閉無法觀察，②③直接給分）。',
+          type: 'multi',
+          subItems: [
+            { id: 'a', label: '① 地板清潔', points: 2 },
+            { id: 'b', label: '② 座位區整潔 (含垃圾桶清潔/無滿溢)', points: 2 },
+            { id: 'c', label: '③ 座位張貼顧客公約 (有徵才與加盟連結) 與禁止外食', points: 2 }
+          ]
+        },
+        {
+          id: '09', num: '09', range: '廁所環境', maxPoints: 6,
+          title: '廁所整潔',
+          desc: '每項扣2分；整潔查檢比照廁所清潔檢表；無廁所直接給分；EMAP 有、因清潔/故障未開放未張貼告示，皆不給分。',
+          type: 'multi',
+          subItems: [
+            { id: 'a', label: '① 廁所整潔無汙垢', points: 2 },
+            { id: 'b', label: '② 化妝室公約張貼且廁所清潔檢查表落實填寫', points: 2 },
+            { id: 'c', label: '③ 垃圾桶有加蓋且無滿溢', points: 2 }
+          ]
+        }
+      ]
+    },
+    {
+      id: 'pro',
+      eyebrow: 'PRO SERVICE · 18 分',
+      title: '專業服務',
+      items: [
+        {
+          id: '10', num: '10', range: '櫃檯結帳', maxPoints: 10,
+          title: '訪員排隊過程中，顧客排隊≧4人時的處理',
+          desc: '每項扣<span class="highlight">5分</span>，未排隊≧4人直接給分；排隊≧4人有導引自助結帳均給分。第一項排隊≧4人但僅一位職員不扣分；第二項觀察排隊至結完帳下一位顧客，門市有執行即給分。',
+          type: 'multi',
+          subItems: [
+            { id: 'a', label: '① 要立即支援結帳', points: 5 },
+            { id: 'b', label: '② 引導排隊顧客臨櫃 (手勢或出聲皆可)', points: 5, hint: '例：結帳這邊請；有自助結帳可以使用喔' }
+          ]
+        },
+        {
+          id: '11', num: '11', range: '櫃檯結帳', maxPoints: 4,
+          title: '結帳裝袋',
+          desc: '每項扣2分（配合減塑政策，店員未詢問是否須購買購物袋不扣分）。',
+          type: 'multi',
+          subItems: [
+            { id: 'a', label: '① 無論購買購物袋/自備購物袋，主動協助裝袋', points: 2 },
+            { id: 'b', label: '② 將「冷/熱食」分開、隔開包裝 (客人同意不在此限)', points: 2 }
+          ]
+        },
+        {
+          id: '12', num: '12', range: '櫃檯結帳', maxPoints: 4,
+          title: '交付單據與引導商品擺放',
+          desc: '每項扣2分，至單項0分為止（零錢與收據放零錢盤使用亦可給分）。',
+          type: 'multi',
+          subItems: [
+            { id: 'a', label: '① 雙手伸出交付顧客單據、現金', points: 2 },
+            { id: 'b', label: '② 以話術或手勢引導商品擺放位置', points: 2, hint: '例：先幫您放這裡；裝袋後向前遞出' }
+          ]
+        }
+      ]
+    },
+    {
+      id: 'respond',
+      eyebrow: 'RESPONSE · 21 分',
+      title: '應對服務',
+      sectionDesc: '測試顧客有需要幫助或不滿的時候：',
+      items: [
+        {
+          id: '13-1', num: '13-1', range: '應對合宜', maxPoints: 5,
+          title: '【放下、回應】',
+          desc: '暫時放下手邊工作與顧客互動、招呼 (如需要等候，禮貌的說明原因)。沒做到扣<span class="highlight">5分</span>。',
+          type: 'binary'
+        },
+        {
+          id: '13-2', num: '13-2', range: '應對合宜', maxPoints: 5,
+          title: '【尊重、傾聽】',
+          desc: '對話時都以正面視角目光注視顧客，耐心聆聽，讓顧客感受尊重。沒做到扣<span class="highlight">5分</span>。',
+          type: 'binary'
+        },
+        {
+          id: '13-3', num: '13-3', range: '應對合宜', maxPoints: 6,
+          title: '【處理】回應顧客提問/需求/抱怨',
+          desc: '類型1：介紹店內商品/活動/業務，缺貨/未引進/故障致歉並給予替代方案。<br>類型2：與門市業務較無相關，委婉致意並提供替代建議。<br>類型3：客訴抱怨能致歉、告知處理作為。<br>沒做到扣<span class="highlight">6分</span>，依狀況類型有確實回應給分。',
+          type: 'binary'
+        },
+        {
+          id: '13-4', num: '13-4', range: '應對合宜', maxPoints: 5,
+          title: '【感謝】服務結束前擇一完成',
+          desc: '① 確認顧客還需其他協助 (如：有符合需求嗎？)<br>② 對談結束前能有「話語」致意 (如：是、謝謝、不會、好的)，或禮貌說明暫時離開 (如：您慢逛、我先支援結帳)。沒做到扣<span class="highlight">5分</span>。',
+          type: 'binary'
+        }
+      ]
+    }
+  ],
+  bonus: {
+    id: 'bonus',
+    eyebrow: 'BONUS · +14 分',
+    title: '加分項目',
+    note: '每一個項目加總分2分，第5項6分(三細項各2分)，共計14分。',
+    items: [
+      { id: 'b1', label: '櫃台收銀機因應人力轉自助結帳功能，有指引立牌；賣場型自助結帳有開啟+指引立牌。', points: 2 },
+      { id: 'b2', label: '櫃台職員能以話術建議顧客使用自助結帳功能。', points: 2 },
+      { id: 'b3', label: '顧客使用自助結帳，職員能從旁指導代替勞，確保顧客學習中完成結帳。', points: 2 },
+      { id: 'b4', label: '自助區或用餐區有提供餐巾紙。', points: 2 },
+      { id: 'b5a', label: '對外廁所：提供衛生紙', points: 2 },
+      { id: 'b5b', label: '對外廁所：提供洗手乳', points: 2 },
+      { id: 'b5c', label: '對外廁所：提供坐墊酒精或酒精噴', points: 2 }
+    ]
+  },
+  charm: {
+    id: 'charm',
+    eyebrow: 'CHARM · 最多 +3',
+    title: '魅力服務加分',
+    note: '服務/商形超乎顧客預期，每項加總分1分（錄影佐證不加分），限3項。',
+    items: [
+      '服務親切：貼心提醒、適度目視微笑、進門招呼有朝氣',
+      '熱心助人：協助老人、身障者、小孩等',
+      '應對服務：說話速度、表達清晰、展現關懷與同理'
+    ],
+    perItem: 1,
+    max: 3
+  },
+  reverse: {
+    id: 'reverse',
+    eyebrow: 'REVERSE · 最多 -3',
+    title: '反轉服務扣分',
+    note: '言行/商形讓顧客感到不滿意，每項扣總分1分，限3項。',
+    items: [
+      '不當言行：聊天、粗口、櫃檯飲食、未著制服、表現不耐',
+      '商形：招牌破損、POP過期、價格卡缺≧5項、EC包裹直接落地',
+      '清潔品保：積塵、層板髒汙/蟲屍、鮮速食過期'
+    ],
+    perItem: -1,
+    max: 3
+  },
+  notes: {
+    id: 'notes',
+    eyebrow: 'NOTES · 不計分',
+    title: '其他建議事項',
+    note: '非評分表項目，調整後對顧客感受提升預期有正面幫助。',
+    count: 3
+  }
+};
+
+// ============================================================
+// DATA: Focus-only form (scaled to 100 points)
+// ============================================================
+const FOCUS_FORM = {
+  sections: [
+    {
+      id: 'focus',
+      eyebrow: 'KEY FOCUS · 100 分',
+      title: '重點聚焦評分',
+      items: [
+        {
+          id: '01', num: '01', range: '進門表現', maxPoints: 15,
+          title: '顧客進店時，服務人員有招呼話術。',
+          desc: '訪員進門後3分鐘內無招呼話術扣<span class="highlight">15分</span>；3分鐘內全員因結帳或調製商品不扣分；三分鐘內無其他顧客進店，不扣分。',
+          type: 'binary', allowNA: true, naLabel: '不適用'
+        },
+        {
+          id: '02', num: '02', range: '櫃檯結帳', maxPoints: 50,
+          title: '顧客臨櫃結帳',
+          desc: '<span class="highlight">每小項未執行扣10分</span>。第一項招呼問候，自訪員從排隊停等線走到櫃台有出聲招呼均認列。',
+          type: 'multi',
+          subItems: [
+            { id: 'a', label: '① 有向顧客招呼問候 (例：您好/哈囉)', points: 10 },
+            { id: 'b', label: '② 有詢問會員', points: 10 },
+            { id: 'c', label: '③ 有確認發票存載具', points: 10, hint: '導引手輸會員電話、顧客報電話、刷會員條碼均可' },
+            { id: 'd', label: '④ 有金額告知 (總共多少元)', points: 10 },
+            { id: 'e', label: '⑤ 有支付指引', points: 10, hint: '現金：收您OO元、找您OO元；卡片：好了，卡片可以拿起來了；電子錢包：好了，謝謝' }
+          ]
+        },
+        {
+          id: '03', num: '03', range: '櫃檯面銷', maxPoints: 20,
+          title: '針對顧客購買商品或聚焦活動進行面銷。',
+          desc: '無面銷扣<span class="highlight">20分</span>；訪員在第一位且排隊≧3人沒有面銷不扣分。',
+          type: 'binary', allowNA: true, naLabel: '不適用(排隊≧3人)'
+        },
+        {
+          id: '04', num: '04', range: '櫃檯結帳', maxPoints: 15,
+          title: '完成結帳服務後致謝→謝謝、歡迎再來等話術。',
+          desc: '臨櫃未致謝扣<span class="highlight">15分</span>；付款後或裝袋後有致謝均給分。',
+          type: 'binary'
+        }
+      ]
+    }
+  ]
+};
+
+// ============================================================
+// STATE
+// ============================================================
+let currentMode = 'focus';
+let state = {}; // mode-specific state, loaded from localStorage
+
+const STORAGE_KEY = 'sec_eval_state_v1';
+
+function getMaxScore() {
+  return 100;
+}
+
+function getStorageKey(mode) {
+  return `${STORAGE_KEY}_${mode}`;
+}
+
+function loadState(mode) {
+  try {
+    const raw = localStorage.getItem(getStorageKey(mode));
+    if (raw) return JSON.parse(raw);
+  } catch(e) {}
+  return { items: {}, bonus: {}, charm: {}, reverse: {}, notes: {}, info: {} };
+}
+
+function saveState() {
+  try {
+    localStorage.setItem(getStorageKey(currentMode), JSON.stringify(state));
+  } catch(e) {}
+}
+
+function loadInfo() {
+  // Info is shared across modes
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY + '_info');
+    if (raw) return JSON.parse(raw);
+  } catch(e) {}
+  return {};
+}
+
+function saveInfo(info) {
+  try {
+    localStorage.setItem(STORAGE_KEY + '_info', JSON.stringify(info));
+  } catch(e) {}
+}
+
+// ============================================================
+// RENDERING
+// ============================================================
+function render() {
+  const form = currentMode === 'full' ? FULL_FORM : FOCUS_FORM;
+  const c = document.getElementById('formContainer');
+  c.innerHTML = '';
+
+  form.sections.forEach(section => {
+    c.appendChild(renderSection(section));
+  });
+
+  if (currentMode === 'full') {
+    c.appendChild(renderBonus(form.bonus));
+    c.appendChild(renderCharmReverse(form.charm, '+'));
+    c.appendChild(renderCharmReverse(form.reverse, '-'));
+    c.appendChild(renderNotes(form.notes));
+  }
+
+  updateScore();
+}
+
+function renderSection(section) {
+  const el = document.createElement('section');
+  el.className = 'section';
+  el.dataset.sectionId = section.id;
+
+  let html = `
+    <div class="section-header">
+      <div class="section-header-left">
+        <div class="section-eyebrow">${section.eyebrow}</div>
+        <div class="section-title">${section.title}</div>
+      </div>
+      <div class="section-points" id="secPts-${section.id}">0</div>
+    </div>
+    <div class="section-body">
+  `;
+
+  if (section.sectionDesc) {
+    html += `<div style="padding:12px 18px 0;font-size:13px;color:var(--text-soft);font-style:italic;">${section.sectionDesc}</div>`;
+  }
+
+  section.items.forEach(item => {
+    html += renderItem(item);
+  });
+
+  html += `</div>`;
+
+  if (section.footer) {
+    html += `<div class="section-summary">
+      <span class="section-summary-label">★ ${section.footer}</span>
+    </div>`;
+  }
+
+  el.innerHTML = html;
+
+  // Wire up event handlers
+  section.items.forEach(item => {
+    wireItem(el, item);
+  });
+
+  return el;
+}
+
+function renderItem(item) {
+  let html = `<div class="item" data-item-id="${item.id}">`;
+  html += `<div class="item-title"><span class="item-num">${item.num}.</span>${item.title}</div>`;
+  html += `<div class="item-meta">
+    <span class="item-range">${item.range}</span>
+    <span class="item-maxpts">${item.maxPoints} 分</span>
+  </div>`;
+  html += `<div class="item-desc">${item.desc}</div>`;
+
+  if (item.type === 'binary') {
+    html += `<div class="choice-row" data-choice-row="${item.id}">
+      <button class="choice-btn" data-choice="yes"><span class="icon">✓</span>做到</button>
+      <button class="choice-btn" data-choice="no"><span class="icon">✕</span>未做到</button>
+      ${item.allowNA ? `<button class="choice-btn" data-choice="na"><span class="icon">—</span>${item.naLabel || '不適用'}</button>` : ''}
+    </div>`;
+  } else if (item.type === 'multi') {
+    html += `<div class="subitems" data-subitems="${item.id}">`;
+    item.subItems.forEach(sub => {
+      html += `<div class="subitem" data-sub-id="${sub.id}">
+        <div class="subitem-check">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="3"><path d="M3 8l3 3 7-7"/></svg>
+        </div>
+        <div class="subitem-text">
+          <div class="subitem-label">${sub.label}</div>
+          ${sub.hint ? `<div class="subitem-hint">${sub.hint}</div>` : ''}
+        </div>
+        <div class="subitem-pts">+${sub.points}</div>
+      </div>`;
+    });
+    html += `</div>`;
+  }
+
+  html += `</div>`;
+  return html;
+}
+
+function wireItem(parentEl, item) {
+  if (item.type === 'binary') {
+    const row = parentEl.querySelector(`[data-choice-row="${item.id}"]`);
+    const buttons = row.querySelectorAll('.choice-btn');
+    // Restore state
+    const current = state.items[item.id];
+    if (current) {
+      buttons.forEach(b => {
+        if (b.dataset.choice === current) {
+          b.classList.add(`selected-${current}`);
+        }
+      });
+    }
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const choice = btn.dataset.choice;
+        buttons.forEach(b => b.className = 'choice-btn');
+        btn.classList.add(`selected-${choice}`);
+        state.items[item.id] = choice;
+        saveState();
+        updateScore();
+      });
+    });
+  } else if (item.type === 'multi') {
+    const subRoot = parentEl.querySelector(`[data-subitems="${item.id}"]`);
+    const subs = subRoot.querySelectorAll('.subitem');
+    const itemState = state.items[item.id] || {};
+    subs.forEach(subEl => {
+      const subId = subEl.dataset.subId;
+      if (itemState[subId]) subEl.classList.add('checked');
+      subEl.addEventListener('click', () => {
+        subEl.classList.toggle('checked');
+        if (!state.items[item.id]) state.items[item.id] = {};
+        state.items[item.id][subId] = subEl.classList.contains('checked');
+        saveState();
+        updateScore();
+      });
+    });
+  }
+}
+
+function renderBonus(bonus) {
+  const el = document.createElement('section');
+  el.className = 'section';
+  el.dataset.sectionId = bonus.id;
+  let html = `
+    <div class="section-header">
+      <div class="section-header-left">
+        <div class="section-eyebrow" style="color:var(--gold);">${bonus.eyebrow}</div>
+        <div class="section-title">${bonus.title}</div>
+      </div>
+      <div class="section-points" id="secPts-${bonus.id}" style="background:var(--gold-soft);color:var(--gold);">0</div>
+    </div>
+    <div class="section-body">
+      <div style="padding:12px 18px 8px;font-size:12.5px;color:var(--text-soft);">${bonus.note}</div>
+  `;
+  bonus.items.forEach(b => {
+    const isActive = state.bonus[b.id];
+    html += `<div class="bonus-item ${isActive ? 'active' : ''}" data-bonus-id="${b.id}" style="margin:0 18px 8px;">
+      <div class="bonus-toggle"></div>
+      <div class="bonus-label">${b.label}</div>
+      <div class="bonus-pts">+${b.points}</div>
+    </div>`;
+  });
+  html += `</div>`;
+  el.innerHTML = html;
+
+  bonus.items.forEach(b => {
+    const item = el.querySelector(`[data-bonus-id="${b.id}"]`);
+    item.addEventListener('click', () => {
+      item.classList.toggle('active');
+      state.bonus[b.id] = item.classList.contains('active');
+      saveState();
+      updateScore();
+    });
+  });
+  return el;
+}
+
+function renderCharmReverse(cfg, sign) {
+  const isPlus = sign === '+';
+  const el = document.createElement('section');
+  el.className = 'section';
+  el.dataset.sectionId = cfg.id;
+  let html = `
+    <div class="section-header">
+      <div class="section-header-left">
+        <div class="section-eyebrow" style="color:${isPlus ? 'var(--gold)' : 'var(--accent)'};">${cfg.eyebrow}</div>
+        <div class="section-title">${cfg.title}</div>
+      </div>
+      <div class="section-points" id="secPts-${cfg.id}" style="background:${isPlus ? 'var(--gold-soft)' : 'var(--accent-soft)'};color:${isPlus ? 'var(--gold)' : 'var(--accent)'};">0</div>
+    </div>
+    <div class="section-body">
+      <div style="padding:12px 18px 4px;font-size:12.5px;color:var(--text-soft);">${cfg.note}</div>
+      <div style="padding:0 18px 8px;font-size:12px;color:var(--text-mute);">
+        參考類別：${cfg.items.map(t => `<div style="margin:4px 0;">• ${t}</div>`).join('')}
+      </div>
+      <div class="text-list">
+  `;
+  for (let i = 1; i <= cfg.max; i++) {
+    const stateObj = isPlus ? state.charm : state.reverse;
+    const val = stateObj[i] || '';
+    html += `<div class="text-row">
+      <div class="text-row-num" style="${isPlus ? '' : 'background:var(--accent-soft);color:var(--accent);'}">${i}</div>
+      <input type="text" placeholder="${isPlus ? '具體事實描述（填寫即計分）' : '具體事實描述（填寫即扣分）'}" data-tr="${cfg.id}-${i}" value="${val.replace(/"/g, '&quot;')}">
+    </div>`;
+  }
+  html += `</div></div>`;
+  el.innerHTML = html;
+
+  el.querySelectorAll('input[data-tr]').forEach(input => {
+    input.addEventListener('input', () => {
+      const [scope, idx] = input.dataset.tr.split('-');
+      const obj = scope === 'charm' ? state.charm : state.reverse;
+      obj[idx] = input.value;
+      saveState();
+      updateScore();
+    });
+  });
+  return el;
+}
+
+function renderNotes(cfg) {
+  const el = document.createElement('section');
+  el.className = 'section';
+  let html = `
+    <div class="section-header">
+      <div class="section-header-left">
+        <div class="section-eyebrow" style="color:var(--text-soft);">${cfg.eyebrow}</div>
+        <div class="section-title">${cfg.title}</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div style="padding:12px 18px 4px;font-size:12.5px;color:var(--text-soft);">${cfg.note}</div>
+      <div class="text-list">
+  `;
+  for (let i = 1; i <= cfg.count; i++) {
+    const val = state.notes[i] || '';
+    html += `<div class="text-row">
+      <div class="text-row-num" style="background:#f0ece2;color:var(--text-soft);">${i}</div>
+      <input type="text" placeholder="建議事項..." data-note="${i}" value="${val.replace(/"/g, '&quot;')}">
+    </div>`;
+  }
+  html += `</div></div>`;
+  el.innerHTML = html;
+
+  el.querySelectorAll('input[data-note]').forEach(input => {
+    input.addEventListener('input', () => {
+      state.notes[input.dataset.note] = input.value;
+      saveState();
+    });
+  });
+  return el;
+}
+
+// ============================================================
+// SCORING
+// ============================================================
+function calcSectionScore(section) {
+  let score = 0;
+  let allPerfect = true;
+  section.items.forEach(item => {
+    if (item.type === 'binary') {
+      const s = state.items[item.id];
+      if (s === 'yes' || s === 'na') {
+        score += item.maxPoints;
+      } else {
+        allPerfect = false;
+      }
+    } else if (item.type === 'multi') {
+      const subState = state.items[item.id] || {};
+      let itemScore = 0;
+      let itemPerfect = true;
+      item.subItems.forEach(sub => {
+        if (subState[sub.id]) {
+          itemScore += sub.points;
+        } else {
+          itemPerfect = false;
+        }
+      });
+      score += itemScore;
+      if (!itemPerfect) allPerfect = false;
+    }
+  });
+  return { score, allPerfect };
+}
+
+function calcTotal() {
+  const form = currentMode === 'full' ? FULL_FORM : FOCUS_FORM;
+  let total = 0;
+  let bonusTotal = 0;
+  let charmTotal = 0;
+  let reverseTotal = 0;
+  const sectionScores = {};
+
+  // Section scores
+  form.sections.forEach(section => {
+    const { score, allPerfect } = calcSectionScore(section);
+    let displayScore = score;
+    // Note: perfectBonus is INFORMATIONAL only — in the spec, "40分" already
+    // includes the 31 base; we keep base scoring + show bonus info, but
+    // don't add it to the running total since total max is 100.
+    sectionScores[section.id] = { score: displayScore, allPerfect };
+    total += displayScore;
+  });
+
+  if (currentMode === 'full') {
+    // Bonus items
+    form.bonus.items.forEach(b => {
+      if (state.bonus[b.id]) bonusTotal += b.points;
+    });
+    // Charm
+    for (let i = 1; i <= form.charm.max; i++) {
+      if ((state.charm[i] || '').trim()) charmTotal += form.charm.perItem;
+    }
+    // Reverse
+    for (let i = 1; i <= form.reverse.max; i++) {
+      if ((state.reverse[i] || '').trim()) reverseTotal += form.reverse.perItem; // negative
+    }
+    total += bonusTotal + charmTotal + reverseTotal;
+  }
+
+  return { total, sectionScores, bonusTotal, charmTotal, reverseTotal };
+}
+
+function getGrade(score) {
+  if (score >= 90) return { letter: 'A+', cls: 'grade-Aplus' };
+  if (score >= 80) return { letter: 'A', cls: 'grade-A' };
+  if (score >= 70) return { letter: 'B', cls: 'grade-B' };
+  if (score >= 60) return { letter: 'C', cls: 'grade-C' };
+  return { letter: 'Z', cls: 'grade-Z' };
+}
+
+function updateScore() {
+  const { total, sectionScores, bonusTotal, charmTotal, reverseTotal } = calcTotal();
+  const max = getMaxScore();
+  // Clamp total at 0 lower bound (display only; the grade calc uses raw)
+  const displayTotal = total;
+
+  document.getElementById('totalScore').textContent = displayTotal;
+  document.getElementById('totalMax').textContent = `/ ${max}`;
+
+  const grade = getGrade(displayTotal);
+  const badge = document.getElementById('gradeBadge');
+  badge.className = 'grade-badge ' + grade.cls;
+  badge.textContent = grade.letter;
+
+  // Update section badges
+  Object.keys(sectionScores).forEach(id => {
+    const el = document.getElementById(`secPts-${id}`);
+    if (el) {
+      const form = currentMode === 'full' ? FULL_FORM : FOCUS_FORM;
+      const sec = form.sections.find(s => s.id === id);
+      const sectionMax = sec.items.reduce((a, i) => a + i.maxPoints, 0);
+      el.textContent = `${sectionScores[id].score} / ${sectionMax}`;
+    }
+  });
+
+  // Update bonus badges
+  if (currentMode === 'full') {
+    const bEl = document.getElementById('secPts-bonus');
+    if (bEl) bEl.textContent = `+${bonusTotal} / 14`;
+    const cEl = document.getElementById('secPts-charm');
+    if (cEl) cEl.textContent = `+${charmTotal} / 3`;
+    const rEl = document.getElementById('secPts-reverse');
+    if (rEl) rEl.textContent = `${reverseTotal} / -3`;
+  }
+}
+
+// ============================================================
+// MODE SWITCHING
+// ============================================================
+function switchMode(mode) {
+  if (mode === currentMode) return;
+  currentMode = mode;
+  document.querySelectorAll('.mode-toggle button').forEach(b => {
+    b.classList.toggle('active', b.dataset.mode === mode);
+  });
+  document.getElementById('modeHint').textContent = mode === 'full'
+    ? '100 分制 · 4 大類 + 加扣分'
+    : '100 分制 · 只評重點聚焦 4 項（獨立評分）';
+  state = loadState(mode);
+  render();
+}
+
+// ============================================================
+// INFO FIELDS
+// ============================================================
+function wireInfo() {
+  const info = loadInfo();
+  ['storeId', 'storeName', 'date', 'time', 'shift'].forEach(key => {
+    const el = document.getElementById(`info-${key}`);
+    if (info[key]) el.value = info[key];
+    el.addEventListener('input', () => {
+      const newInfo = loadInfo();
+      newInfo[key] = el.value;
+      saveInfo(newInfo);
+    });
+    el.addEventListener('change', () => {
+      const newInfo = loadInfo();
+      newInfo[key] = el.value;
+      saveInfo(newInfo);
+    });
+  });
+
+  // Default date to today if empty
+  const dateEl = document.getElementById('info-date');
+  if (!dateEl.value) {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    dateEl.value = `${yyyy}-${mm}-${dd}`;
+    const newInfo = loadInfo();
+    newInfo.date = dateEl.value;
+    saveInfo(newInfo);
+  }
+}
+
+// ============================================================
+// EXPORT / SHARE
+// ============================================================
+function buildReport() {
+  const info = loadInfo();
+  const { total, sectionScores, bonusTotal, charmTotal, reverseTotal } = calcTotal();
+  const grade = getGrade(total);
+  const form = currentMode === 'full' ? FULL_FORM : FOCUS_FORM;
+
+  let out = '';
+  out += `📋 緒瀚資訊 門市優質服務評分\n`;
+  out += `─────────────────────\n`;
+  out += `模式：${currentMode === 'full' ? '完整評分' : '重點聚焦獨立評分'}\n`;
+  if (info.storeName || info.storeId) out += `門市：${info.storeName || ''}${info.storeId ? ' (' + info.storeId + ')' : ''}\n`;
+  if (info.date) out += `查核日期：${info.date}\n`;
+  if (info.time) out += `查核時間：${info.time}\n`;
+  if (info.shift) out += `班別：${info.shift}\n`;
+  out += `\n`;
+  out += `🏆 總分：${total} / 100\n`;
+  out += `等級：${grade.letter} 級\n`;
+  out += `─────────────────────\n\n`;
+
+  form.sections.forEach(section => {
+    const ss = sectionScores[section.id];
+    const sectionMax = section.items.reduce((a, i) => a + i.maxPoints, 0);
+    out += `【${section.title}】 ${ss.score} / ${sectionMax}\n`;
+    section.items.forEach(item => {
+      if (item.type === 'binary') {
+        const s = state.items[item.id];
+        const mark = s === 'yes' ? '✓' : s === 'na' ? '—' : s === 'no' ? '✗' : '☐';
+        out += `  ${mark} ${item.num}. ${item.title}\n`;
+      } else {
+        const subState = state.items[item.id] || {};
+        out += `  ${item.num}. ${item.title}\n`;
+        item.subItems.forEach(sub => {
+          const ok = subState[sub.id];
+          out += `     ${ok ? '✓' : '✗'} ${sub.label} (${sub.points}分)\n`;
+        });
+      }
+    });
+    out += `\n`;
+  });
+
+  if (currentMode === 'full') {
+    // Bonus
+    const activeBonus = form.bonus.items.filter(b => state.bonus[b.id]);
+    out += `【加分項目】 +${bonusTotal} / 14\n`;
+    if (activeBonus.length === 0) {
+      out += `  (無)\n`;
+    } else {
+      activeBonus.forEach(b => out += `  ✓ ${b.label} (+${b.points})\n`);
+    }
+    out += `\n`;
+
+    // Charm
+    out += `【魅力服務加分】 +${charmTotal} / 3\n`;
+    let charmHas = false;
+    for (let i = 1; i <= form.charm.max; i++) {
+      const v = (state.charm[i] || '').trim();
+      if (v) { out += `  ${i}. ${v} (+1)\n`; charmHas = true; }
+    }
+    if (!charmHas) out += `  (無)\n`;
+    out += `\n`;
+
+    // Reverse
+    out += `【反轉服務扣分】 ${reverseTotal} / -3\n`;
+    let revHas = false;
+    for (let i = 1; i <= form.reverse.max; i++) {
+      const v = (state.reverse[i] || '').trim();
+      if (v) { out += `  ${i}. ${v} (-1)\n`; revHas = true; }
+    }
+    if (!revHas) out += `  (無)\n`;
+    out += `\n`;
+
+    // Notes
+    let noteHas = false;
+    let noteOut = '【其他建議事項】\n';
+    for (let i = 1; i <= form.notes.count; i++) {
+      const v = (state.notes[i] || '').trim();
+      if (v) { noteOut += `  ${i}. ${v}\n`; noteHas = true; }
+    }
+    if (noteHas) out += noteOut + '\n';
+  }
+
+  out += `─────────────────────\n`;
+  out += `🟢 ${grade.letter} 級 · ${total} 分`;
+  return out;
+}
+
+function showExport() {
+  document.getElementById('exportText').value = buildReport();
+  document.getElementById('exportModal').classList.add('show');
+}
+
+function closeExport() {
+  document.getElementById('exportModal').classList.remove('show');
+}
+
+function copyReport() {
+  const text = buildReport();
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => showToast('已複製到剪貼簿'));
+  } else {
+    // Fallback
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); showToast('已複製到剪貼簿'); }
+    catch(e) { showToast('複製失敗'); }
+    document.body.removeChild(ta);
+  }
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 1800);
+}
+
+function confirmReset() {
+  document.getElementById('confirmModal').classList.add('show');
+}
+
+function closeConfirm() {
+  document.getElementById('confirmModal').classList.remove('show');
+}
+
+function doReset() {
+  state = { items: {}, bonus: {}, charm: {}, reverse: {}, notes: {}, info: {} };
+  saveState();
+  render();
+  closeConfirm();
+  showToast('已重置');
+}
+
+// ============================================================
+// INIT
+// ============================================================
+function init() {
+  state = loadState(currentMode);
+  wireInfo();
+  document.querySelectorAll('.mode-toggle button').forEach(btn => {
+    btn.addEventListener('click', () => switchMode(btn.dataset.mode));
+  });
+  render();
+}
+
+init();
+</script>
+</body>
+</html>
