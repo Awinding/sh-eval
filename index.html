@@ -44,6 +44,8 @@ html, body {
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   letter-spacing: 0.01em;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -205,7 +207,7 @@ input, select, textarea { font-family: inherit; font-size: 15px; }
   padding: 16px 18px 8px;
 }
 
-.info-field { display: flex; flex-direction: column; gap: 5px; }
+.info-field { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
 
 .info-field.full { grid-column: 1 / -1; }
 
@@ -227,6 +229,8 @@ input, select, textarea { font-family: inherit; font-size: 15px; }
   transition: border-color 0.2s;
   -webkit-appearance: none;
   appearance: none;
+  width: 100%;
+  min-width: 0;
 }
 
 .info-field input:focus, .info-field select:focus {
@@ -776,7 +780,7 @@ input, select, textarea { font-family: inherit; font-size: 15px; }
       <label>查核時間</label>
       <input type="time" id="info-time">
     </div>
-    <div class="info-field full">
+    <div class="info-field">
       <label>查核班別</label>
       <select id="info-shift">
         <option value="">請選擇</option>
@@ -785,6 +789,10 @@ input, select, textarea { font-family: inherit; font-size: 15px; }
         <option value="晚班">晚班</option>
         <option value="大夜">大夜</option>
       </select>
+    </div>
+    <div class="info-field">
+      <label>受評人員姓名</label>
+      <input type="text" id="info-staffName" autocomplete="off">
     </div>
   </div>
 </section>
@@ -1561,7 +1569,7 @@ function switchMode(mode) {
 // ============================================================
 function wireInfo() {
   const info = loadInfo();
-  ['storeId', 'storeName', 'date', 'time', 'shift'].forEach(key => {
+  ['storeId', 'storeName', 'date', 'time', 'shift', 'staffName'].forEach(key => {
     const el = document.getElementById(`info-${key}`);
     if (info[key]) el.value = info[key];
     el.addEventListener('input', () => {
@@ -1607,6 +1615,7 @@ function buildReport() {
   if (info.date) out += `查核日期：${info.date}\n`;
   if (info.time) out += `查核時間：${info.time}\n`;
   if (info.shift) out += `班別：${info.shift}\n`;
+  if (info.staffName) out += `受評人員：${info.staffName}\n`;
   out += `\n`;
   out += `🏆 總分：${total} / 100\n`;
   out += `等級：${grade.letter} 級\n`;
